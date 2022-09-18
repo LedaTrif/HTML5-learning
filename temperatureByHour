@@ -1,0 +1,7 @@
+var tempByHour = new Array();
+tempByHour[0] = 59.20;
+tempByHour[1] = 60.1;
+tempByHour[2] = 63;
+tempByHour[3] = 65;
+tempByHour[4] = 62;
+tempByHour[5] = 61;
