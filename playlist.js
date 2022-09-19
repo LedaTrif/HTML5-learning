@@ -1,10 +1,13 @@
-window.onload = init;
 // first the page must load and the function init will be triggered, action will be triggered *after loading*
+window.onload = init;
 function init() {
-    var button = document.getElementById("addButton");
     //localize the button via id"addButton" and trigger function handleButtonClick, which is show msg alert "Button was clicked!"
+    var button = document.getElementById("addButton");
+    //handleButtonClick is what happens when the button is clicked, which is specified via the function below "funtcion handleButtonClick"
     button.onclick = handleButtonClick;
-    //handleButtonClick is what happens when the button is clicked, which is specified via the function below
+    // load playlist
+    loadPlaylist(); 
+
 }
 function handleButtonClick() {
     var textInput = document.getElementById("songTextInput");
@@ -18,4 +21,6 @@ function handleButtonClick() {
    li.innerHTML = songName;
    var ul = document.getElementById("playlist");
    ul.appendChild(li);
+   // saves song everytime a new song is added
+   save(songName);
 }
