@@ -10,6 +10,17 @@ var banzaiMovie = {
     genre: "Cult Classic",
     rating: 5,
     showtimes: ["1:00 pm", "5:00 pm", "7:00 pm", "11:00pm"]
+   getNextShowing: function(movie) {
+    var now = new Date().getTime();
+    
+    for (var i = 0; i < movie.showtimes.length; i++) {
+        var showtime = getTimeFromString(movie.showtimes[i]);
+        if ((showtime-now) > 0) {
+            return "Next showing of " + movie.title + " is " + movie.showtimes[i]; 
+        }
+    }
+    return null;
+}
 };
 var movie1 = {
     title: "Plan 9 out outer Space",
@@ -24,16 +35,7 @@ var movie2 = {
     showtimes: ["5:00 pm", "9:00 pm"]
 };
 
-function getNextShowing(movie) {
-    var now = new Date().getTime();
-    for (var i = 0; i < movie.showtimes.length; i++) {
-        var showtime = getTimeFromString(movie.showtimes[i]);
-        if ((showtime-now) > 0) {
-            return "Next showing of " + movie.title + " is " + movie.showtimes[i]; 
-        }
-    }
-    return null;
-}
+
 
 function getTimeFromString(str) {
 	var theTime = new Date();
