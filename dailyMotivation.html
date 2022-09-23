@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Daily Motivation</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: x-large;
+                color: crimson;
+            }
+        </style>
+        <script>
+            window.onload = function makePhrases() {
+                var part1 = ["making money" ,"be healthy" ,"love yourself ","ignore toxic people and situations ","relax "];
+
+                var rand = Math.floor(Math.random() * part1.length);
+
+                var phrase = "Your focus for today should be on " + part1[rand] + "! ";
+                var phraseElement = document.getElementById("phrase");
+                phraseElement.innerHTML = phrase;
+            }
+    
+        </script>
+    </head>
+    <body>
+        <h1>Your daily motivation:</h1>
+        <p id="phrase"></p>
+    </body>
+</html>
