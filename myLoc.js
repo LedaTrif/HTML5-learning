@@ -1,17 +1,19 @@
+var waychId = null;
 var ourCoords = {
     latitude: 47.624851,
     longitude: -122.52099
 };
-var map;
+var map = null;
 
 window.onload = getMyLocation;
 
 function getMyLocation() {
     if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(
-            displayLocation, 
-            displayError);
+        var watchButton = document.getElementById("watch");
+        watchButton.onclick = watchLocation;
+        var clearWatchButton = document.getElementById("clearWatch");
+        clearWatchButton.onclick = clearWatch;
     } else {
         alert("Oops, no geolocation support");
     }
@@ -28,7 +30,10 @@ function displayLocation(position) {
     var km = computeDistance(position.coords, ourCoords);
     var distance = document.getElementById("distance");
     distance.innerHTML = "You're " + km + " km from WickedlySmart HQ.";
-    showMap(position.coords);
+    if (map == null) {
+        showMap(position.coords);
+    }
+    
 }
 
 function displayError(error) {
@@ -95,4 +100,14 @@ function displayError(error) {
         google.maps.event.addListener(marker, "cklick", function() {
             infoWindow.open(map);
         })
+    }
+    function watchLocation() {
+        watchId = navigator.geolocation.watchPosition(displayLocation,
+                                                       displayError);
+    }
+    function clearWatch() {
+        if (watchId) {
+            navigator.geolocation.clearWatch(waychId);
+            watchId = null;
+        }
     }
