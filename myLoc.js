@@ -103,7 +103,8 @@ function displayError(error) {
     }
     function watchLocation() {
         watchId = navigator.geolocation.watchPosition(displayLocation,
-                                                       displayError);
+                                                       displayError,
+                                                       {enableHighAccuracy: true, timeout:10000, maximumAge: 0});
     }
     function clearWatch() {
         if (watchId) {
