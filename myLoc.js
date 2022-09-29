@@ -20,8 +20,10 @@ function displayLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
+
     var div = document.getElementById("location");
     div.innerHTML = "You are at Latitude: " + latitude + " , Longitude: " + longitude;
+    div.innerHTML += " (with " + position.coords.accurancy + " meters accurancy)";
 
     var km = computeDistance(position.coords, ourCoords);
     var distance = document.getElementById("distance");
