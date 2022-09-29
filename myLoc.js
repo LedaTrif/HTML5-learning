@@ -4,6 +4,7 @@ var ourCoords = {
     longitude: -122.52099
 };
 var map = null;
+var prevCoords = null;
 
 window.onload = getMyLocation;
 
@@ -32,8 +33,14 @@ function displayLocation(position) {
     distance.innerHTML = "You're " + km + " km from WickedlySmart HQ.";
     if (map == null) {
         showMap(position.coords);
-    }
-    
+        prevCoords = position.coords;
+    } else {
+        var meters = computeDistance(position.coords, prevCoords) * 1000;
+        if (meters > 20) {
+        scrollMapToPosition(position.coords);
+        prevCoords = position.coords;
+    }  
+}
 }
 
 function displayError(error) {
@@ -112,3 +119,14 @@ function displayError(error) {
             watchId = null;
         }
     }
+    function scrollMapToPosition(coords) {
+        var latitude = coords.latitude;
+        var longitude = coords.longitude;
+        var latlong = new google.maps.LatLng(latitude,longitude);
+
+        map.panTo(latlong);
+
+        addMarker(map, latlong, "Your new location", "You moved to: " + latitude + ", " + longitude);
+    }
+
+    
