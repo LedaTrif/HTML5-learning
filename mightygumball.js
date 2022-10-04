@@ -9,3 +9,8 @@ window.onload = function() {
     };
     request.send(null);
 }
+
+function updateSales(responseText) {
+    var salesDiv = document.getElementById("sales");
+    salesDiv.innerHTML = responseText;
+}
