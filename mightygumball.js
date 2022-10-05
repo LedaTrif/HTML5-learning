@@ -1,5 +1,5 @@
 window.onload = function() {
-    var url = "htpp://localhost/sales.json";
+    var url = "file:///private/etc/apache2/html5/sales.json";
     var request = new XMLHttpRequest();
     request.open ("GET", url);
     request.onload = function() {
